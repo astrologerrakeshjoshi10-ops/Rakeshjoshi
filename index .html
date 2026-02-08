@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cosmic Wonders | Astroscience Store</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap">
+    <style>
+        :root {
+            --peach-bg: #FFF3EB;      /* Peach background */
+            --brown-text: #5D4037;    /* Brown text color */
+            --maroon-accent: #800020; /* Maroon accent */
+            --white: #FFFFFF;         /* White */
+            --light-brown: #8B7355;   /* Light brown for muted text */
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--white);
+            color: var(--brown-text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            color: var(--maroon-accent);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: #000000;
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(93, 64, 55, 0.1);
+            border-bottom: 2px solid var(--maroon-accent);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .om-logo {
+            font-family: serif;
+            font-size: 2.5rem;
+            color: var(--white);
+            font-weight: bold;
+            line-height: 1;
+        }
+        
+        .logo h1 {
+            font-size: 1.8rem;
+            color: var(--white);
+        }
+        
+        /* Hero Section */
+        .hero {
+            position: relative;
+            background-color: var(--peach-bg);
+            padding: 100px 0;
+            text-align: center;
+            border-bottom: 2px solid var(--maroon-accent);
+            min-height: 500px;
+            overflow: hidden;
+        }
+        
+        .hero-banner {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            object-fit: cover;
+            z-index: 1;
+            opacity: 1;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px;
+            background-color: rgba(255, 255, 255, 0.7); /* More transparent */
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(93, 64, 55, 0.2);
+            border: 2px solid var(--maroon-accent);
+            backdrop-filter: blur(5px); /* Adds a blur effect to background */
+        }
+        
+        .hero h2 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+            color: var(--maroon-accent);
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin: 0 auto 30px;
+            color: var(--brown-text);
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background-color: var(--maroon-accent);
+            color: var(--white);
+            padding: 15px 35px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            border: 2px solid var(--maroon-accent);
+        }
+        
+        .cta-button:hover {
+            background-color: transparent;
+            color: var(--maroon-accent);
+            transform: translateY(-3px);
+        }
+        
+        /* Products Section */
+        .products {
+            padding: 80px 0;
+            background-color: white;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--maroon-accent);
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+        
+        .section-title h2:after {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 3px;
+            background-color: var(--maroon-accent);
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+        
+        .product-row {
+            display: contents;
+        }
+        
+        .product-card {
+            background-color: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(93, 64, 55, 0.1);
+            border: 1px solid rgba(139, 115, 85, 0.2);
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(93, 64, 55, 0.2);
+            border-color: var(--maroon-accent);
+        }
+        
+        .product-img {
+            height: 200px; /* Height for 16:9 aspect ratio (1280x720) */
+            background-color: #F5E9D8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .product-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .product-card:hover .product-img img {
+            transform: scale(1.1);
+        }
+        
+        .product-info {
+            padding: 20px;
+            text-align: center;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        
+        .product-info h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: var(--maroon-accent);
+            min-height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .book-now-btn {
+            background-color: var(--maroon-accent);
+            color: var(--white);
+            border: none;
+            padding: 12px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+            width: 100%;
+            font-size: 1rem;
+            border: 2px solid var(--maroon-accent);
+            margin-top: auto;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .book-now-btn:hover {
+            background-color: transparent;
+            color: var(--maroon-accent);
+        }
+        
+        /* Special layout for last row with 2 products */
+        .product-card:nth-last-child(-n+2) {
+            grid-column: span 1.5;
+        }
+        
+        /* Testimonials Section */
+        .testimonials {
+            padding: 80px 0;
+            background-color: var(--peach-bg);
+            border-top: 2px solid var(--maroon-accent);
+            border-bottom: 2px solid var(--maroon-accent);
+        }
+        
+        .testimonial-slider {
+            position: relative;
+            overflow: hidden;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .testimonial-track {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            gap: 20px;
+        }
+        
+        .testimonial-slide {
+            min-width: 300px;
+            height: 250px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(93, 64, 55, 0.2);
+            border: 2px solid var(--maroon-accent);
+        }
+        
+        .testimonial-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .testimonial-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(128, 0, 32, 0.8);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            z-index: 10;
+            transition: all 0.3s;
+        }
+        
+        .testimonial-nav:hover {
+            background-color: var(--maroon-accent);
+            transform: translateY(-50%) scale(1.1);
+        }
+        
+        .testimonial-prev {
+            left: 10px;
+        }
+        
+        .testimonial-next {
+            right: 10px;
+        }
+        
+        /* About Section */
+        .about {
+            padding: 80px 0;
+            background-color: var(--white);
+            border-bottom: 2px solid var(--maroon-accent);
+        }
+        
+        .about-container {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+        
+        .about-img {
+            flex: 1;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(93, 64, 55, 0.1);
+            border: 2px solid var(--maroon-accent);
+            height: 800px; /* Increased height */
+            position: relative;
+        }
+        
+        .about-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        
+        .about-content {
+            flex: 1;
+        }
+        
+        .about-content h2 {
+            font-size: 2.5rem;
+            color: var(--maroon-accent);
+            margin-bottom: 20px;
+        }
+        
+        .about-content p {
+            margin-bottom: 20px;
+            color: var(--brown-text);
+        }
+        
+        .mission {
+            background-color: rgba(128, 0, 32, 0.1);
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid var(--maroon-accent);
+            margin-top: 20px;
+        }
+        
+        .mission ul {
+            padding-left: 20px;
+            margin-top: 10px;
+        }
+        
+        .mission li {
+            margin-bottom: 8px;
+        }
+        
+        /* Contact Section */
+        .contact {
+            padding: 80px 0;
+            text-align: center;
+            background-color: var(--white);
+        }
+        
+        .contact h2 {
+            font-size: 2.5rem;
+            color: var(--maroon-accent);
+            margin-bottom: 30px;
+        }
+        
+        .contact-options {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .contact-card {
+            background-color: var(--white);
+            padding: 30px 20px; /* Reduced horizontal padding for better fit */
+            border-radius: 8px;
+            width: 280px;
+            min-width: 280px; /* Fixed minimum width */
+            box-shadow: 0 5px 15px rgba(93, 64, 55, 0.1);
+            transition: transform 0.3s;
+            border: 1px solid rgba(139, 115, 85, 0.2);
+            word-break: break-word; /* For long email addresses */
+            overflow-wrap: break-word;
+        }
+        
+        .contact-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--maroon-accent);
+        }
+        
+        .contact-card i {
+            font-size: 3rem;
+            color: var(--maroon-accent);
+            margin-bottom: 20px;
+        }
+        
+        .contact-card h3 {
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+        
+        .contact-card p {
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+            line-height: 1.4;
+        }
+        
+        .whatsapp-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background-color: #25D366;
+            color: var(--white);
+            padding: 15px 30px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.2rem;
+            transition: all 0.3s;
+            margin-top: 20px;
+            border: 2px solid #25D366;
+        }
+        
+        .whatsapp-btn:hover {
+            background-color: transparent;
+            color: #25D366;
+            transform: translateY(-3px);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--white);
+            padding: 50px 0 20px;
+            border-top: 2px solid var(--maroon-accent);
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            color: var(--maroon-accent);
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+        
+        .footer-column p, .footer-column a {
+            color: var(--brown-text);
+            margin-bottom: 10px;
+            display: block;
+            text-decoration: none;
+        }
+        
+        .footer-column a:hover {
+            color: var(--maroon-accent);
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-icons a {
+            background-color: rgba(128, 0, 32, 0.1);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--maroon-accent);
+            transition: all 0.3s;
+        }
+        
+        .social-icons a:hover {
+            background-color: var(--maroon-accent);
+            color: var(--white);
+            transform: translateY(-5px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(93, 64, 55, 0.2);
+            color: var(--light-brown);
+            font-size: 0.9rem;
+        }
+        
+        /* Mantra Styles */
+        .mantra {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: var(--brown-text);
+            text-align: left;
+            margin-top: 15px;
+            font-style: italic;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .product-card:nth-last-child(-n+2) {
+                grid-column: span 1;
+            }
+            
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .product-card:nth-last-child(-n+2) {
+                grid-column: span 1;
+            }
+            
+            .about-container {
+                flex-direction: column;
+            }
+            
+            .about-img {
+                height: 350px;
+                width: 100%;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero h2 {
+                font-size: 2.2rem;
+            }
+            
+            .testimonial-slide {
+                min-width: 250px;
+                height: 200px;
+            }
+            
+            .contact-options {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .contact-card {
+                width: 100%;
+                max-width: 350px;
+                min-width: auto;
+            }
+        }
+        
+        @media (max-width: 600px) {
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .product-card:nth-last-child(-n+2) {
+                grid-column: span 1;
+            }
+            
+            .mantra {
+                font-size: 1.1rem;
+                line-height: 1.6;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .header-container {
+                flex-direction: row;
+                gap: 15px;
+            }
+            
+            .om-logo {
+                font-size: 2rem;
+            }
+            
+            .logo h1 {
+                font-size: 1.5rem;
+            }
+            
+            .hero h2 {
+                font-size: 1.8rem;
+            }
+            
+            .hero-content {
+                padding: 20px;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .about-img {
+                height: 300px;
+            }
+            
+            .contact-card {
+                padding: 20px 15px;
+            }
+            
+            .contact-card h3 {
+                font-size: 1.2rem;
+            }
+            
+            .contact-card p {
+                font-size: 0.9rem;
+            }
+            
+            .testimonial-slide {
+                min-width: 200px;
+                height: 180px;
+            }
+            
+            .mantra {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <div class="om-logo">ॐ</div>
+                <h1>Rakesh Joshi</h1>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <img src="https://astrokrishnaregmi.com/wp-content/uploads/2022/10/circle.jpg" alt="Cosmic Circle" class="hero-banner">
+        <div class="container hero-content">
+            <h2>Discover the Universe's Mysteries</h2>
+            <p>राकेश जोशी ज्योतिष सेवाओं में आपका हार्दिक स्वागत है।
+यहाँ आपको आध्यात्मिक मार्गदर्शन, ज्योतिषीय परामर्श और जीवन में सकारात्मक बदलाव के लिए विशेष सेवाएँ प्रदान की जाती हैं।
+सुंदरकांड पाठ, भजन संध्या, वास्तु शांति, गृह प्रवेश और लकी उपायों के माध्यम से अपने जीवन में सुख-शांति और समृद्धि लाएँ।</p>
+            <a href="#products" class="cta-button">Explore Our Services</a>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products" id="products">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Services</h2>
+            </div>
+            <div class="products-grid" id="productsGrid">
+                <!-- Products will be dynamically added here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <div class="section-title">
+                <h2>Photo Gallery</h2>
+            </div>
+            <div class="testimonial-slider">
+                <button class="testimonial-nav testimonial-prev" id="testimonialPrev">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="testimonial-nav testimonial-next" id="testimonialNext">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+                <div class="testimonial-track" id="testimonialTrack">
+                    <!-- Testimonial images will be added here -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container about-container">
+            <div class="about-img">
+                <img src="https://raw.githubusercontent.com/astrologerrakeshjoshi10-ops/image/main/rakesh%20joshi%20photo.jpeg" alt="About Cosmic Wonders">
+            </div>
+            <div class="about-content">
+                <h2>About Us</h2>
+                <p>Welcome to Rakesh Joshi Astrologer, your trusted destination for authentic Vedic astrology services and spiritual remedies for personal well-being and peace of mind. With years of experience in traditional Jyotish and spiritual practices, we are dedicated to helping individuals bring positivity, balance, and harmony into their lives.</p>
+                <p>Our services are specially designed for personal guidance and spiritual upliftment, rooted in ancient Vedic traditions and practical remedies. Whether you are facing personal challenges, family issues, Vastu-related problems, or planetary doshas, we offer personalized solutions based on your birth chart (Janam Patri) and spiritual needs.</p>
+                <div class="mission">
+                    <p><strong>🌟 Our Services Include:</strong></p>
+                    <ul>
+                        <li>Sundar Kand Path – For peace, protection & spiritual strength</li>
+                        <li>Bhajan Sandhya – Devotional gatherings for positive energy</li>
+                        <li>Vastu Shanti – Removing Vastu dosh for harmony in home & workplace</li>
+                        <li>Graha Pravesh Puja – Auspicious rituals for new home entry</li>
+                        <li>Lucky Stone Chart – Personalized gemstone guidance</li>
+                        <li>Janam Patri (Kundli) Analysis – Detailed birth chart reading</li>
+                        <li>Kaal Sarp Dosh Shanti – Remedies for planetary dosha</li>
+                        <li>Mangal Shanti – Remedies for Mangal dosh (Manglik issues)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2>Connect With Us</h2>
+            <div class="contact-options">
+                <div class="contact-card">
+                    <i class="fas fa-envelope"></i>
+                    <h3>Email Us</h3>
+                    <p>astrologerrakeshjoshi10@gmail.com</p>
+                    <p>Response within 24 hours</p>
+                </div>
+                <div class="contact-card">
+                    <i class="fas fa-phone"></i>
+                    <h3>Call Us</h3>
+                    <p>+91 9928394143</p>
+                    <p>Mon-Fri, 9AM-6PM EST</p>
+                </div>
+                <div class="contact-card">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <h3>Visit Us</h3>
+                    <p>10 Vikas Nagar Murlipura</p>
+                    <p>Scheme Jaipur Rajasthan India</p>
+                </div>
+            </div>
+            <a href="https://api.whatsapp.com/send/?phone=9928394143&text=%E0%A4%B0%E0%A4%BE%E0%A4%A7%E0%A5%87%20%E0%A4%B0%E0%A4%BE%E0%A4%A7%E0%A5%87%20%E0%A4%B0%E0%A4%BE%E0%A4%95%E0%A5%87%E0%A4%B6%20%E0%A4%9C%E0%A5%80&type=phone_number&app_absent=0" class="whatsapp-btn" target="_blank">
+                <i class="fab fa-whatsapp"></i> Chat on WhatsApp
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>ॐ वक्रतुण्ड महाकाय सूर्यकोटि समप्रभ।</h3>
+                    <div class="mantra">
+                        ॐ वक्रतुण्ड महाकाय सूर्यकोटि समप्रभ।<br>
+                        निर्विघ्नं कुरु मे देव सर्वकार्येषु सर्वदा॥
+                    </div>
+                    <div class="social-icons">
+                        <a href="https://www.facebook.com/share/1Af1SxuAJx/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/rakeshjoshi2817" target="_blank"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <a href="#products">Services</a>
+                    <a href="#about">About Us</a>
+                    <a href="#contact">Contact</a>
+                    <a href="#testimonials">Photo Gallery</a>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2026 Rakesh Joshi Astrologer. All rights reserved. | Designed with <i class="fas fa-heart" style="color:var(--maroon-accent);"></i> for spiritual harmony</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Product Data - Using YouTube thumbnail format (1280x720)
+        const products = [
+            {
+                id: 1,
+                name: "Sundar Kand Path",
+                image: "https://i.ytimg.com/vi/IT_EGZur7aA/maxresdefault.jpg"
+            },
+            {
+                id: 2,
+                name: "Bhajan Sandhya",
+                image: "https://i.ytimg.com/vi/kYzDBidYOSA/maxresdefault.jpg"
+            },
+            {
+                id: 3,
+                name: "Vastu Shanti",
+                image: "https://truevastu.com/wp-content/uploads/2025/10/Vastu-shanti-Pooja.webp"
+            },
+            {
+                id: 4,
+                name: "Graha Pravesh Puja",
+                image: "https://www.gharjunction.com/img/blog/68.jpg"
+            },
+            {
+                id: 5,
+                name: "Personal Janam Patri",
+                image: "https://images.astroyogi.com/strapicmsprod/strapicmsprod/assets/kundli_banner_7841fb07bb.webp"
+            },
+            {
+                id: 6,
+                name: "Kaal Sarp Dosh Shanti",
+                image: "https://raw.githubusercontent.com/astrologerrakeshjoshi10-ops/image/main/kaal%20sarp%20edit.png"
+            },
+            {
+                id: 7,
+                name: "Mangal Shanti Puja",
+                image: "https://i.ytimg.com/vi/oNJEHogq4Pw/maxresdefault.jpg"
+            },
+            {
+                id: 8,
+                name: "Lucky Stone Chart",
+                image: "https://static.toiimg.com/thumb/msid-113316284,width-1280,height-720,resizemode-4/113316284.jpg"
+            }
+        ];
+
+        // Testimonial Images
+        const testimonialImages = [
+            "https://raw.githubusercontent.com/astrologerrakeshjoshi10-ops/image/main/FB_IMG_1752292080701.jpg.jpeg",
+            "https://raw.githubusercontent.com/astrologerrakeshjoshi10-ops/image/main/IMG-20250708-WA0000.jpg.jpeg",
+            "https://raw.githubusercontent.com/astrologerrakeshjoshi10-ops/image/main/IMG-20251204-WA0006.jpg.jpeg",
+            "https://raw.githubusercontent.com/astrologerrakeshjoshi10-ops/image/main/Screenshot_2025-07-02-16-15-03-51_99c04817c0de5652397fc8b56c3b3817.jpg.jpeg",
+            "https://raw.githubusercontent.com/astrologerrakeshjoshi10-ops/image/main/IMG-20251204-WA0018.jpg.jpeg",
+            "https://raw.githubusercontent.com/astrologerrakeshjoshi10-ops/image/main/IMG20260113133300.jpg.jpeg"
+        ];
+
+        // WhatsApp URL
+        const whatsappUrl = "https://api.whatsapp.com/send/?phone=9928394143&text=%E0%A4%B0%E0%A4%BE%E0%A4%A7%E0%A5%87%20%E0%A4%B0%E0%A4%BE%E0%A4%A7%E0%A5%87%20%E0%A4%B0%E0%A4%BE%E0%A4%95%E0%A5%87%E0%A4%B6%20%E0%A4%9C%E0%A5%80&type=phone_number&app_absent=0";
+
+        let currentTestimonialSlide = 0;
+        let autoSlideInterval;
+
+        // DOM Elements
+        const productsGrid = document.getElementById('productsGrid');
+        const testimonialTrack = document.getElementById('testimonialTrack');
+        const testimonialPrev = document.getElementById('testimonialPrev');
+        const testimonialNext = document.getElementById('testimonialNext');
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            renderProducts();
+            renderTestimonials();
+            startAutoSlide();
+        });
+
+        // Render products to the page
+        function renderProducts() {
+            productsGrid.innerHTML = '';
+            
+            products.forEach(product => {
+                const productCard = document.createElement('div');
+                productCard.className = 'product-card';
+                productCard.innerHTML = `
+                    <div class="product-img">
+                        <img src="${product.image}" alt="${product.name}" loading="lazy">
+                    </div>
+                    <div class="product-info">
+                        <h3>${product.name}</h3>
+                        <a href="${whatsappUrl}" class="book-now-btn" target="_blank">
+                            <i class="fab fa-whatsapp"></i> Book Now
+                        </a>
+                    </div>
+                `;
+                
+                productsGrid.appendChild(productCard);
+            });
+        }
+
+        // Render testimonials
+        function renderTestimonials() {
+            testimonialTrack.innerHTML = '';
+            
+            testimonialImages.forEach((image, index) => {
+                const slide = document.createElement('div');
+                slide.className = 'testimonial-slide';
+                slide.innerHTML = `<img src="${image}" alt="Testimonial ${index + 1}" loading="lazy">`;
+                testimonialTrack.appendChild(slide);
+            });
+            
+            updateTestimonialPosition();
+        }
+
+        // Update testimonial slider position
+        function updateTestimonialPosition() {
+            const slides = document.querySelectorAll('.testimonial-slide');
+            if (slides.length > 0) {
+                const slideWidth = slides[0].offsetWidth + 20;
+                testimonialTrack.style.transform = `translateX(-${currentTestimonialSlide * slideWidth}px)`;
+            }
+        }
+
+        // Next testimonial slide
+        function nextTestimonialSlide() {
+            currentTestimonialSlide++;
+            if (currentTestimonialSlide >= testimonialImages.length) {
+                currentTestimonialSlide = 0;
+            }
+            updateTestimonialPosition();
+        }
+
+        // Previous testimonial slide
+        function prevTestimonialSlide() {
+            currentTestimonialSlide--;
+            if (currentTestimonialSlide < 0) {
+                currentTestimonialSlide = testimonialImages.length - 1;
+            }
+            updateTestimonialPosition();
+        }
+
+        // Start auto slide
+        function startAutoSlide() {
+            autoSlideInterval = setInterval(nextTestimonialSlide, 3000);
+        }
+
+        // Stop auto slide
+        function stopAutoSlide() {
+            clearInterval(autoSlideInterval);
+        }
+
+        // Testimonial navigation
+        testimonialNext.addEventListener('click', function() {
+            stopAutoSlide();
+            nextTestimonialSlide();
+            startAutoSlide();
+        });
+
+        testimonialPrev.addEventListener('click', function() {
+            stopAutoSlide();
+            prevTestimonialSlide();
+            startAutoSlide();
+        });
+
+        // Pause auto slide on hover
+        testimonialTrack.addEventListener('mouseenter', stopAutoSlide);
+        testimonialTrack.addEventListener('mouseleave', startAutoSlide);
+
+        // Update testimonial slider on window resize
+        window.addEventListener('resize', updateTestimonialPosition);
+    </script>
+</body>
+</html>
